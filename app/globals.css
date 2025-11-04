@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Font variables */
+:root {
+  --font-ui: 'Manrope';
+  --font-logo: 'Tutano cc v2', var(--font-ui), system-ui, sans-serif;
+  /* Safe area variable fallback */
+  --space-safe: clamp(8px, 3vw, 12px);
+}
+
+html, body, :root {
+  height: 100%;
+}
+
+body {
+  @apply bg-background text-neutral-900 font-ui antialiased;
+}
+
+/* Safe area utilities */
+.px-safe {
+  padding-left: max(env(safe-area-inset-left, 0px), var(--space-safe));
+  padding-right: max(env(safe-area-inset-right, 0px), var(--space-safe));
+}
+.pt-safe {
+  padding-top: max(env(safe-area-inset-top, 0px), var(--space-safe));
+}
+.pb-safe {
+  padding-bottom: max(env(safe-area-inset-bottom, 0px), var(--space-safe));
+}
+
+/* Utility for gradient accents based on primary token */
+.bg-primary-gradient {
+  background-image: linear-gradient(135deg,
+    hsl(var(--color-primary) / 0.14),
+    hsl(var(--color-primary) / 0.06)
+  );
+}
+
+.card {
+  @apply bg-surface rounded-xl shadow-soft border border-neutral-100;
+}
+
+.btn {
+  @apply inline-flex items-center justify-center rounded-lg px-4 py-3 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/30 active:scale-[0.99];
+}
+.btn-primary { @apply bg-primary text-primary-foreground hover:bg-primary/90; }
+.btn-secondary { @apply bg-secondary text-secondary-foreground hover:bg-secondary/90; }
+.btn-ghost { @apply bg-transparent text-neutral-700 hover:bg-neutral-100; }
+
+.badge { @apply inline-flex items-center gap-1 rounded-full border border-neutral-200 bg-white/70 px-2.5 py-1 text-xs text-neutral-700 backdrop-blur; }
+
+.input { @apply w-full rounded-lg border border-neutral-200 bg-white px-4 py-3 text-sm placeholder:text-neutral-400 focus:border-primary focus:ring-2 focus:ring-primary/20; }
+
+.tabs { @apply inline-flex items-center gap-1 rounded-lg bg-neutral-100 p-1; }
+.tab { @apply rounded-md px-3 py-1.5 text-sm text-neutral-600; }
+.tab-active { @apply bg-white text-neutral-900 shadow-sm; }
+
+.sheet-backdrop { @apply fixed inset-0 bg-neutral-900/30; }
+.sheet { @apply fixed inset-x-0 bottom-0 rounded-t-2xl bg-surface p-4 shadow-2xl; }
